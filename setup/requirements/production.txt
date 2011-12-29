@@ -1,3 +1,10 @@
 Django
+Fabric
 ipython
+yolk
+django-south
+# for RESTful API
+django-tastypie
+# for custom Admin skin
+django-grappelli
 
