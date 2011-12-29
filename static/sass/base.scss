@@ -1,0 +1,13 @@
+/*!
+ * Stylesheet for TrueCar Executive Dashboard project
+ *
+ * Date: @DATE
+ */
+
+
+@import "bootstrap.scss";
+@import "variables.scss";
+
+body {
+    background-color: $body-background-color;
+}
