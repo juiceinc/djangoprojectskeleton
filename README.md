@@ -35,15 +35,20 @@ It's a basic structure which can serve as a base for your Django projects.
 * YUI reset and fonts CSS is being used
 * a basic CSS file built with lesscss.org
 * the base template is using a grid layout based on YUI Grids
- 
+
 ## Setup the project with virtualenv and pip
+
+Run the script ./bin/initial.sh
+
 * $ cd /project_name
 * $ git clone git@github.com:florentin/django-skeleton.git .
 * $ virtualenv env --no-site-packages
 * $ source ./env/bin/activate
-* $ mkdir -p database
+* $ mkdir -p database logs
 * $ pip install -r ./setup/requirements/production.txt
 * $ pip install -r ./setup/requirements/development.txt
+
+## Packages that are installed
 
 ## Setup the database
 * $ cd /project_name/

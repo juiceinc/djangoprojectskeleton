@@ -7,10 +7,13 @@
 !/static/
 !/media/
 !/setup/
+!/bin/
 !/README.md
 !.git*
 
 # ignore all pyc files
 *.pyc
+.sass-cache/
+.idea/
 
 
