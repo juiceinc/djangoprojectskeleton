@@ -1,67 +1,45 @@
-{% extends "layouts/classic.html" %}{% load i18n %}
+{% extends "layouts/html5boilerplate.html" %}{% load i18n %}
 
-{% block messages %}{% if messages %}
-	<div id="message" class="center">
-	{% for message in messages %}
-	       <div class="alert-message warning">{{ message }}</div>
-	{% endfor %}
-	</div>
-{% endif %}{% endblock messages %}
+{% comment %}
+This is the base template for your app. Any values that need to be applied across
+your entire app should go in here.
+{% endcomment %}
 
 {% block head %}
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<link href="{{ STATIC_URL }}images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-	{# <link href="{% url rss %}" rel="alternate" type="application/rss+xml" title="Welcome" /> #}
-	<meta name="description" content="" />
-	<meta name="keywords" content="" />
-	
-	{% block head_css %}
-	<link href="http://yui.yahooapis.com/combo?3.4.1/build/cssreset/reset-min.css&3.4.1/build/cssfonts/fonts-min.css&3.4.1/build/cssgrids/grids-min.css&3.4.1/build/cssbase/base-min.css" rel="stylesheet" type="text/css"/>
-	{% endblock head_css %}
+    {% block head_css %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}stylesheets/base.css">
+    {% endblock %}
+    {% block extra_css %}{% endblock %}
+    {% block pre_js %}{% endblock %}
 
-	{% block head_less %}
-	<link href="{{ STATIC_URL }}css/base.less" rel="stylesheet/less" type="text/css" />
-	{% endblock head_less %}
-	
-	{% block head_js %}
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
-	<script src="{{ STATIC_URL }}less/less-1.1.5.min.js" type="text/javascript"></script>
-	{% endblock head_js %}
-	
+	{# <link href="{% url rss %}" rel="alternate" type="application/rss+xml" title="Welcome" /> #}
 {% endblock head %}
 
-{% block header %}
-<div id="header" class="yui3-g mt">
-	<div class="yui3-u-1 box_header" >
-	{% block logo %}
-		<a href="{% url home %}"><img src="http://media.djangoproject.com/img/badges/djangojoint107x25.gif" alt="Logo" /></a>
-	{% endblock %}
-	</div>
-</div>
-<div id="nav" class="yui3-g mt">
-	<div class="yui3-u-1 box_nav">
-		<a href="{% url home %}">Home</a> 
-	</div>
-</div>
-{% endblock %}
+{% block meta-author %}Juice, Inc., Reston, Virginia{% endblock %}
 
-{% block content_base %}
-<div id="content" class="yui3-g mt">
-	<div class="yui3-u-1 box_content">
-		{% block content %}{% endblock %}
-	</div>
-</div>
-{% endblock %}
+{% block html_base %}
+<div id="container">
+    {% block messages_base %}{% block messages %}{% endblock messages %}{% endblock messages_base %}
 
-{% block footer_base %}
-<div id="footer" class="yui3-g mt">
-	<div class="yui3-u-1 box_footer">
-		{% block footer %}Copyright &copy;2012{% endblock footer %}
-	</div>
-</div>
-{% endblock %}
+    <header>
+        {% block header_base %}{% block header %}{% endblock header %}{% endblock header_base %}
+    </header>
 
-{% block closure_base %}
-	{% include "blocks/analytics.html" %}
-	{% block closure %}{% endblock %}
-{% endblock %}
+    <div id="main" role="main">
+        {% block content_base %}{% block content %}{% endblock content %}{% endblock content_base %}
+    </div>
+
+    <footer>
+        {% block footer_base %}{% block footer %}{% endblock footer %}{% endblock footer_base %}
+    </footer>
+
+    {% comment %}
+    {% block closure_base %}
+        <!-- Change UA-XXXXX-X to be your site's ID -->
+        {% include "blocks/analytics.html" %}
+        {% block closure %}{% endblock %}
+    {% endblock %}
+    {% endcomment %}
+</div>
+{% endblock html_base %}
+
