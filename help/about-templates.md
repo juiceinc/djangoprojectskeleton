@@ -15,4 +15,7 @@ The following templates and blocks are available.
 * meta-description: meta description element in head (generally vary by page)
 * meta-keywords: meta keywords element in head (generally vary by page)
 * meta-author: meta author element in head (generally vary by app)
+* head_js: javascript that goes in the head
+
+* js: javascript that appears right before the closing body tag (most js should go here)
 
