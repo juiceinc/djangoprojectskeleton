@@ -17,6 +17,7 @@ EMAIL_PORT = '25'
 DEFAULT_FROM_EMAIL = "noreply@gmail.com"
 ADMINS = (
     ('Florentin Sardan', 'elmophp@gmail.com'),
+    ('Chris Gemignani', 'chris.gemignani@juiceanalytics.com')
 )
 MANAGERS = ADMINS
 INTERNAL_IPS = ('127.0.0.1',)
