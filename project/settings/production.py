@@ -64,7 +64,7 @@ TEMPLATE_CONTEXT_PROCESSORS = [
 INSTALLED_APPS += (
     'django.contrib.admin',
     'django.contrib.comments',
-
+    'south',
 )
 
 LOGGING = {
