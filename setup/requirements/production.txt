@@ -2,9 +2,12 @@ Django
 Fabric
 ipython
 yolk
-django-south
+South
+django-registration
 # for RESTful API
 django-tastypie
 # for custom Admin skin
 django-grappelli
-
+-e git+http://github.com/facebook/python-sdk.git#egg=facebook-python-sdk
+psycopg2<=2.4.1
+virtualenv
