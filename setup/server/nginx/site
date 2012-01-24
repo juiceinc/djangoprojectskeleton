@@ -1,0 +1,27 @@
+server {
+    listen       80;
+    server_name ec2-107-20-69-239.compute-1.amazonaws.com;
+    rewrite ^(.*)$ http://ec2-107-20-69-239.compute-1.amazonaws.com$1 permanent;
+}
+
+server {
+    listen       80;
+    server_name  {{ hostname }};
+    root /project/{{ PROJECT_NAME }}/current/static;
+
+	access_log  /var/log/nginx/{{ PROJECT_NAME }}.access.log;
+	error_log  /var/log/nginx/{{ PROJECT_NAME }}.error.log;
+
+    proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Host $http_host;
+    proxy_set_header  X-Real-IP  $remote_addr;
+    proxy_set_header Host $http_host;
+
+    location /static {
+        root /project/{{ PROJECT_NAME }}/current;
+    }
+
+    location / {
+        proxy_pass http://{{ django_host }}:{{ DJANGO_PORT }};
+    }
+}
