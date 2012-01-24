@@ -125,28 +125,48 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
 )
 
+# Project specific apps
+INSTALLED_APPS += (
+    'django.contrib.admin',
+    'south',
+)
+
+
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
 # the site admins on every HTTP 500 error.
 # See http://docs.djangoproject.com/en/dev/topics/logging for
 # more details on how to customize your logging configuration.
+
+
 LOGGING = {
     'version': 1,
-    'disable_existing_loggers': False,
+    'disable_existing_loggers': True,
     'handlers': {
         'mail_admins': {
             'level': 'ERROR',
             'class': 'django.utils.log.AdminEmailHandler'
-        }
+        },
+        'file_logging': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.WatchedFileHandler',
+            'filename': os.path.join(PARENT_ROOT, 'logs/errors.log'),
+        },
     },
     'loggers': {
+        'django.db': {
+            'level': 'ERROR',
+            'handlers': ['mail_admins', 'file_logging'],
+            'propagate': True,
+        },
         'django.request': {
-            'handlers': ['mail_admins'],
+            'handlers': ['mail_admins', 'file_logging'],
             'level': 'ERROR',
             'propagate': True,
         },
     }
 }
+
 
 
 # TastyPie API settings

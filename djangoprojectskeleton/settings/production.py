@@ -4,10 +4,17 @@ import os.path
 PROJECT_ROOT = os.path.join(os.path.abspath(os.path.dirname(__file__)), '../')
 PARENT_ROOT = os.path.join(PROJECT_ROOT, '../')
 
+def replace_or_default(template, default):
+    if template and isinstance(template, basestring) and template.startswith('{{'):
+        return default
+    else:
+        return template
+
+
 DEBUG = False
 TEMPLATE_DEBUG = False
 DJANGO_SERVE_PUBLIC = False
-PREPEND_WWW = True
+PREPEND_WWW = False
 SEND_BROKEN_LINK_EMAILS = True
 
 APPEND_SLASH = True
@@ -67,33 +74,8 @@ INSTALLED_APPS += (
     'south',
 )
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': True,
-    'handlers': {
-        'mail_admins': {
-            'level': 'ERROR',
-            'class': 'django.utils.log.AdminEmailHandler'
-        },
-        'file_logging': {
-            'level': 'DEBUG',
-            'class': 'logging.handlers.WatchedFileHandler',
-            'filename': os.path.join(PARENT_ROOT, 'logs/errors.log'),
-        },
-    },
-    'loggers': {
-        'django.db': {
-            'level': 'ERROR',
-            'handlers': ['mail_admins', 'file_logging'],
-            'propagate': True,
-        },
-        'django.request': {
-            'handlers': ['mail_admins', 'file_logging'],
-            'level': 'ERROR',
-            'propagate': True,
-        },
-    }
-}
+# Log to
+LOGGING['handlers']['file_logging']['filename'] = os.path.join(PARENT_ROOT, 'logs/errors.log')
 
 # --------------------------------
 #           APP SETTINGS
